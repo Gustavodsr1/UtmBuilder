@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UtmBuilder.Core.ValueObjects.Execptions;
 
 namespace UtmBuilder.Core.ValueObjects
 {
@@ -16,6 +17,10 @@ namespace UtmBuilder.Core.ValueObjects
             Id = id;    
             Term = term;    
             Content = content;  
+
+            InvalidCampaignException.ThrowIfNull(item: source, message: "source is invalid");
+            InvalidCampaignException.ThrowIfNull(item: medium, message: "medium is invalid");
+            InvalidCampaignException.ThrowIfNull(item: name,   message: "name is invalid");
         }
 
         public string? Id { get; }
