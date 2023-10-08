@@ -42,6 +42,9 @@ namespace UtmBuilder.Core
             var term = pars.Where(x => x.StartsWith("utm_term")).FirstOrDefault("").Split("=")[1];
             var content = pars.Where(x => x.StartsWith("utm_content")).FirstOrDefault("").Split("=")[1];
 
+            var utm = new Utm(new Url(segments[0]),
+                              new Campaign(source, medium, name, id, term, content));
+            return utm;
         }
 
         public override string ToString()
@@ -57,6 +60,7 @@ namespace UtmBuilder.Core
 
             return $"{Url.Address}?{string.Join("&", segments)}";
         }
+
 
 
     }
